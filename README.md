@@ -1,9 +1,9 @@
 # UUVC
 **This is currently incomplete, will add checkpoints and demo, testing cleaned-up codes.**
 
-Official implementation for the paper [A Unified One-Shot Prosody and Speaker Conversion System with Self-Supervised Discrete Speech Units](...).
-Submitted to ICASSP 2023.
-**Audio samples/demo for our system can be accessed [here](https://b04901014.github.io/UUVC/)**
+ - Official implementation for the paper [A Unified One-Shot Prosody and Speaker Conversion System with Self-Supervised Discrete Speech Units](...).
+ - Submitted to ICASSP 2023.
+ - **Audio samples/demo for our system can be accessed [here](https://b04901014.github.io/UUVC/)**
 
 ## Setup environment
 1. [pytorch](https://pytorch.org)
@@ -12,7 +12,7 @@ Submitted to ICASSP 2023.
 4. [textless-lib](https://github.com/facebookresearch/textlesslib)
 
 See `setup.sh` for details of package installation (especially if you have problem on installing textless-lib).
-I used 1.12.1 for pytorch and 1.7.7 for pytorch lightning. No guarantee the compatability of other versions.
+I used 1.12.1 for pytorch and 1.7.7 for pytorch lightning. No guarantee for the compatability of other versions.
 
 ## Get Vocoder
 We use the pretrained [HiFi-GAN vocoder](https://github.com/jik876/hifi-gan).
