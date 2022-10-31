@@ -14,6 +14,10 @@ Submitted to ICASSP 2023.
 See `setup.sh` for details of package installation (especially if you have problem on installing textless-lib).
 I used 1.12.1 for pytorch and 1.7.7 for pytorch lightning. No guarantee the compatability of other versions.
 
+## Get Vocoder
+We use the pretrained [HiFi-GAN vocoder](https://github.com/jik876/hifi-gan).
+Download the [Universal-V1](https://drive.google.com/drive/folders/1YuOoV3lO2-Hhn1F2HJ2aQ4S0LC1JdKLd) version from the repo and put the checkpoints at `vocoder/cp_hifigan/`
+
 ## Dataset preprocessing
 Here we show an example of preprocessing VCTK, which you can adjust to your own dataset.
 1. Get VCTK from [here](https://datashare.ed.ac.uk/handle/10283/3443)
