@@ -18,7 +18,7 @@ I used 1.12.1 for pytorch and 1.7.7 for pytorch lightning. No guarantee for the 
 We use the pretrained [HiFi-GAN vocoder](https://github.com/jik876/hifi-gan).
 Download the [Universal-V1](https://drive.google.com/drive/folders/1YuOoV3lO2-Hhn1F2HJ2aQ4S0LC1JdKLd) version from the repo and put the checkpoints at `vocoder/cp_hifigan/`
 
-## Dataset preprocessing
+## Dataset preprocessing (for training)
 Here we show an example of preprocessing VCTK, which you can adjust to your own dataset.
 1. Get VCTK from [here](https://datashare.ed.ac.uk/handle/10283/3443)
 2. Run the below commands to preprocess speech units, pitch, 22k melspectrogram, energy, 16k-resampled speech:
@@ -26,10 +26,14 @@ Here we show an example of preprocessing VCTK, which you can adjust to your own 
 mkdir -p features/VCTK
 python s2u.py --VCTK --datadir VCTK_DIR --outdir features/VCTK --with_pitch_unit
 ```
+The operation is time-consuming due to iterative pitch extraction from textless-lib.
+
 3. Run the below command to generate training and validation splits, you can adjust the script to your own dataset:
 ```
+mkdir datasets
 python make_data_vctk.py
 ```
+This will output two file: `datasets/train_vctk.txt` and `datasets/valid_vctk.txt` contains filelists for training and validation.
 
 ## Training
 We provide the below command as an example, change the arguments according to your dataset:
@@ -46,6 +50,7 @@ python train.py --saving_path ckpt/ \
  - `--distributed` if you ar e training with multiple GPUs
  - `--check_val_every_n_epoch`: Eval every n epoch
  - `--training_step`: Total training step (generator + discriminator)
+Tensorboard logging will be in `logs/RV` or `LOG_DIR/RV` if you specify `--logdir LOG_DIR`.
 
 ## Inference
 We provide examples for synthesis of the system in `inference.py`, you can adjust this script to your own usage.
@@ -56,7 +61,7 @@ python inference.py --result_dir samples --ckpt CKPT_PATH --config CONFIG_PATH -
  - `--ckpt`: .ckpt file that is generated during training, or from the pretrained checkpoints
  - `--config`: .json file that is generated at the start of the training, or from the pretrained checkpoints
  - `--result_dir`: Your desired output directory for the samples, will create subdirectory for different conversions
- - `--metapath`: The txt file contains the source and target speech paths, see `eval.txt` for example.
+ - `--metapath`: The txt file contains the source and target speech paths, see `eval.txt` for an example.
 The filenames will be `{source_wav_name}--{target_wav_name}.wav`
 
 ## Pretrained checkpoints

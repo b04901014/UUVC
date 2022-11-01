@@ -26,8 +26,8 @@ if args.with_pitch_unit:
         dense_model_name=args.model,
         quantizer_model_name='kmeans',
         vocab_size=args.n_clusters,
-        deduplicate=False,
-        need_f0=False
+        deduplicate=False
+#        need_f0=False
     ).cuda()
 
 processed = [p.stem for p in Path(args.outdir).glob(f'*-unit.npy')]
@@ -46,7 +46,6 @@ wavfiles = [p for p in Path(args.datadir).rglob('*.wav')] + [p for p in Path(arg
 if args.VCTK:
     wavfiles = [p for p in wavfiles if '_mic1' in str(p)]
 
-print (wavfiles)
 for f in tqdm(wavfiles):
 #    if f.stem + '-unit' in processed:
 #        continue
@@ -61,17 +60,17 @@ for f in tqdm(wavfiles):
         if sr not in transforms_22k:
             continue
         wav = transforms_22k[sr](wav)
-    try:
-        mels, energy = mel_spectrogram(wav, 1025, 80, 22050, 256, 1024, 0, 8000, return_energy=True)
-        mels, energy = mels.cpu().numpy()[0].T, energy.cpu().numpy()[0]
-        if args.with_pitch_unit:
-            encoded = encoder(wav_16k)
-            units = encoded["units"].cpu().numpy()
-            f0 = encoded["f0"].cpu().numpy()
-    except:
-        print (f.stem)
-        traceback.print_exc()
-        continue
+#    try:
+    mels, energy = mel_spectrogram(wav, 1025, 80, 22050, 256, 1024, 0, 8000, return_energy=True)
+    mels, energy = mels.cpu().numpy()[0].T, energy.cpu().numpy()[0]
+    if args.with_pitch_unit:
+        encoded = encoder(wav_16k)
+        units = encoded["units"].cpu().numpy()
+        f0 = encoded["f0"].cpu().numpy()
+#    except:
+#        print (f.stem)
+#        traceback.print_exc()
+#        continue
     name = f.stem
     if args.VCTK:
         name = name.replace('_mic1', '')

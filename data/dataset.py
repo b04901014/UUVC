@@ -28,7 +28,7 @@ def mel_spectrogram(y, n_fft, num_mels, sampling_rate, hop_size, win_size, fmin,
 
     global mel_basis, hann_window
     if fmax not in mel_basis:
-        mel = librosa_mel_fn(sampling_rate, n_fft, num_mels, fmin, fmax)
+        mel = librosa_mel_fn(sr=sampling_rate, n_fft=n_fft, n_mels=num_mels, fmin=fmin, fmax=fmax)
         mel_basis[str(fmax)+'_'+str(y.device)] = torch.from_numpy(mel).float().to(y.device)
         hann_window[str(y.device)] = torch.hann_window(win_size).to(y.device)
 
@@ -98,7 +98,6 @@ class SpeechDataset(data.Dataset):
     def seqCollate(self, batch):
         output = {
             'audio': [],
-            'speaker': [],
             'unit': [],
             'dedup_unit': [],
             'duration': [],
@@ -123,7 +122,7 @@ class SpeechDataset(data.Dataset):
             if len(dedup_unit) > m_d:
                 m_d = len(dedup_unit)
         #Pad each element, create mask
-        for audio, unit, _, dedup_unit, duration, mel, E, f0, voiced in batch:
+        for audio, unit, dedup_unit, duration, mel, E, f0, voiced in batch:
             #Deal with audio
             audio_mask = torch.BoolTensor([False] * len(audio) + [True] * (m_a - len(audio)))
             audio = F.pad(audio, [0, m_a-len(audio)])
