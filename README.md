@@ -20,7 +20,7 @@ Download the [Universal-V1](https://drive.google.com/drive/folders/1YuOoV3lO2-Hh
 
 ## Dataset preprocessing (for training)
 Here we show an example of preprocessing VCTK, which you can adjust to your own dataset.
-1. Get VCTK from [here](https://datashare.ed.ac.uk/handle/10283/3443)
+1. Download VCTK dataset from [here](https://datashare.ed.ac.uk/handle/10283/3443)
 2. Run the below commands to preprocess speech units, pitch, 22k melspectrogram, energy, 16k-resampled speech:
 ```
 mkdir -p features/VCTK
@@ -40,23 +40,24 @@ We provide the below command as an example, change the arguments according to yo
 ```
 mkdir ckpt
 python train.py --saving_path ckpt/ \
-                --training_step 75000 \
+                --training_step 70000 \
                 --batch_size 200 \
                 --check_val_every_n_epoch 5 \
                 --traintxt datasets/train_vctk.txt \
                 --validtxt datasets/valid_vctk.txt \
                 [--distributed]
 ```
- - `--distributed` if you ar e training with multiple GPUs
+ - `--distributed` if you are training with multiple GPUs
  - `--check_val_every_n_epoch`: Eval every n epoch
  - `--training_step`: Total training step (generator + discriminator)
+
 Tensorboard logging will be in `logs/RV` or `LOG_DIR/RV` if you specify `--logdir LOG_DIR`.
 
 ## Inference
 We provide examples for synthesis of the system in `inference.py`, you can adjust this script to your own usage.
 Example to run `inference.py`:
 ```
-python inference.py --result_dir samples --ckpt CKPT_PATH --config CONFIG_PATH --metapath META_PATH
+python inference.py --result_dir ./samples --ckpt CKPT_PATH --config CONFIG_PATH --metapath META_PATH
 ```
  - `--ckpt`: .ckpt file that is generated during training, or from the pretrained checkpoints
  - `--config`: .json file that is generated at the start of the training, or from the pretrained checkpoints
