@@ -1,5 +1,5 @@
 # UUVC
-**This is currently incomplete, will add checkpoints and demo, testing cleaned-up codes.**
+**This is currently incomplete, will add paper on arXiv.**
 
  - Official implementation for the paper [A Unified One-Shot Prosody and Speaker Conversion System with Self-Supervised Discrete Speech Units](...).
  - Submitted to ICASSP 2023.
@@ -63,9 +63,9 @@ python inference.py --result_dir ./samples --ckpt CKPT_PATH --config CONFIG_PATH
  - `--config`: .json file that is generated at the start of the training, or from the pretrained checkpoints
  - `--result_dir`: Your desired output directory for the samples, will create subdirectory for different conversions
  - `--metapath`: The txt file contains the source and target speech paths, see `eval.txt` for an example.
-The filenames will be `{source_wav_name}--{target_wav_name}.wav`
+The filenames will be `{source_wav_name}--{target_wav_name}.wav`. For examples of passing original pitch, energy instead of reconstructed, see `inference_exact_pitch.py` with the same arguments.
 
 ## Pretrained checkpoints
 We provide checkpoints pretrained sperately on VCTK and (LibriTTS-360h + VCTK + ESD). The model is a little bit large since it contains all the training and optimizer states.
  - [VCTK](https://cmu.box.com/s/9w59mb74n97ge18wdfb77htuznmk4y1p)
- - [LibriTTS-360h + VCTK + ESD](...)
+ - [LibriTTS-360h + VCTK + ESD](https://cmu.box.com/s/76f7kkhuns929da4kaafjqqk2x7nf2d3)
