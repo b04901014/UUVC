@@ -67,5 +67,5 @@ The filenames will be `{source_wav_name}--{target_wav_name}.wav`
 
 ## Pretrained checkpoints
 We provide checkpoints pretrained sperately on VCTK and (LibriTTS-360h + VCTK + ESD). The model is a little bit large since it contains all the training and optimizer states.
- - [VCTK](...)
+ - [VCTK](https://cmu.box.com/s/9w59mb74n97ge18wdfb77htuznmk4y1p)
  - [LibriTTS-360h + VCTK + ESD](...)
