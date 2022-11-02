@@ -63,6 +63,7 @@ python inference.py --result_dir ./samples --ckpt CKPT_PATH --config CONFIG_PATH
  - `--config`: .json file that is generated at the start of the training, or from the pretrained checkpoints
  - `--result_dir`: Your desired output directory for the samples, will create subdirectory for different conversions
  - `--metapath`: The txt file contains the source and target speech paths, see `eval.txt` for an example.
+
 The filenames will be `{source_wav_name}--{target_wav_name}.wav`. For examples of passing original pitch, energy instead of reconstructed, see `inference_exact_pitch.py` with the same arguments.
 
 ## Pretrained checkpoints
