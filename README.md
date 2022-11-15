@@ -1,7 +1,6 @@
 # UUVC
-**This is currently incomplete, will add paper on arXiv.**
 
- - Official implementation for the paper [A Unified One-Shot Prosody and Speaker Conversion System with Self-Supervised Discrete Speech Units](...).
+ - Official implementation for the paper [A Unified One-Shot Prosody and Speaker Conversion System with Self-Supervised Discrete Speech Units](http://arxiv.org/abs/2211.06535).
  - Submitted to ICASSP 2023.
  - **Audio samples/demo for our system can be accessed [here](https://b04901014.github.io/UUVC/)**
 
