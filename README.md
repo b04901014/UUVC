@@ -69,3 +69,5 @@ The filenames will be `{source_wav_name}--{target_wav_name}.wav`. For examples o
 We provide checkpoints pretrained sperately on VCTK and (LibriTTS-360h + VCTK + ESD). The model is a little bit large since it contains all the training and optimizer states.
  - [VCTK](https://cmu.box.com/s/9w59mb74n97ge18wdfb77htuznmk4y1p)
  - [LibriTTS-360h + VCTK + ESD](https://cmu.box.com/s/76f7kkhuns929da4kaafjqqk2x7nf2d3)
+
+For ethical concerns, the discriminator is also in the checkpoint to distinguish fake from true speech.
